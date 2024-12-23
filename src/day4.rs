@@ -1,21 +1,21 @@
 use crate::read_lines_of_file;
 use regex::Regex;
 
-fn count_matches(line: &String) -> i32 {
+fn count_matches(line: &String) -> i64 {
     let xmas_re = Regex::new(r"SAMX").unwrap();
     let samx_re = Regex::new(r"XMAS").unwrap();
 
     let xmas = xmas_re.find_iter(line).count();
     let samx = samx_re.find_iter(line).count();
-    (xmas + samx) as i32
+    (xmas + samx) as i64
 }
 
-pub fn first() -> i32 {
+pub fn first() -> i64 {
     let lines = read_lines_of_file("4.txt");
 
-    let horizontal: i32 = lines.iter().map(count_matches).sum();
+    let horizontal: i64 = lines.iter().map(count_matches).sum();
 
-    let vertical: i32 = (0..lines.first().unwrap().len())
+    let vertical: i64 = (0..lines.first().unwrap().len())
         .map(|idx| {
             lines
                 .iter()
@@ -63,7 +63,7 @@ pub fn first() -> i32 {
     horizontal + vertical + sum
 }
 
-pub fn second() -> i32 {
+pub fn second() -> i64 {
     let lines = read_lines_of_file("4.txt");
 
     let a_indices: Vec<(usize, usize)> = lines
@@ -119,5 +119,5 @@ pub fn second() -> i32 {
 
             (left_ms || left_sm) && (right_ms || right_sm)
         })
-        .count() as i32
+        .count() as i64
 }

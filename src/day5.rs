@@ -1,6 +1,6 @@
 use crate::read_lines_of_file;
 
-fn illegal_orderings(test: Vec<i32>, orders: Vec<(i32, i32)>) -> Vec<(i32, i32)> {
+fn illegal_orderings(test: Vec<i64>, orders: Vec<(i64, i64)>) -> Vec<(i64, i64)> {
     orders
         .iter()
         .filter(|(first, last)| {
@@ -20,25 +20,25 @@ fn illegal_orderings(test: Vec<i32>, orders: Vec<(i32, i32)>) -> Vec<(i32, i32)>
         .collect()
 }
 
-fn orders(lines: &Vec<String>) -> Vec<(i32, i32)> {
+fn orders(lines: &Vec<String>) -> Vec<(i64, i64)> {
     lines
         .iter()
         .take_while(|l| !l.is_empty())
         .map(|l| {
             let mut split = l.split("|");
-            let first: i32 = split.nth(0).unwrap().parse().unwrap();
-            let last: i32 = split.last().unwrap().parse().unwrap();
+            let first: i64 = split.nth(0).unwrap().parse().unwrap();
+            let last: i64 = split.last().unwrap().parse().unwrap();
             (first, last)
         })
         .collect()
 }
 
-fn tests(lines: &Vec<String>) -> Vec<Vec<i32>> {
+fn tests(lines: &Vec<String>) -> Vec<Vec<i64>> {
     lines
         .iter()
         .rev()
         .take_while(|l| !l.is_empty())
-        .map(|l| l.split(",").map(|s| s.parse::<i32>().unwrap()).collect())
+        .map(|l| l.split(",").map(|s| s.parse::<i64>().unwrap()).collect())
         .collect()
 }
 
@@ -47,7 +47,7 @@ fn middle_elem<T>(test: &Vec<T>) -> &T {
     test.iter().nth(idx).unwrap()
 }
 
-pub fn first() -> i32 {
+pub fn first() -> i64 {
     let lines = read_lines_of_file("5.txt");
     let orders = orders(&lines);
     let tests = tests(&lines);
@@ -59,7 +59,7 @@ pub fn first() -> i32 {
         .sum()
 }
 
-pub fn second() -> i32 {
+pub fn second() -> i64 {
     let lines = read_lines_of_file("5.txt");
     let orders = orders(&lines);
     let mut tests = tests(&lines);

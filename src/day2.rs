@@ -1,19 +1,19 @@
 use crate::read_lines_of_file;
 
-fn get_diffs(l: Vec<i32>) -> Vec<i32> {
+fn get_diffs(l: Vec<i64>) -> Vec<i64> {
     let mut a = l.clone();
     let mut b = l.clone();
     a.push(0);
     b.insert(0, 0);
-    let mut diffs: Vec<i32> = a.iter().zip(b).map(|(a, b)| (a - b)).collect();
+    let mut diffs: Vec<i64> = a.iter().zip(b).map(|(a, b)| (a - b)).collect();
 
     diffs.remove(0);
     diffs.remove(diffs.len() - 1);
     diffs
 }
 
-fn asd(line: Vec<i32>) -> bool {
-    let diffs: Vec<i32> = get_diffs(line);
+fn asd(line: Vec<i64>) -> bool {
+    let diffs: Vec<i64> = get_diffs(line);
 
     let first = *diffs.first().unwrap();
     if first == 0 {
@@ -29,15 +29,15 @@ fn asd(line: Vec<i32>) -> bool {
     })
 }
 
-pub fn first() -> i32 {
+pub fn first() -> i64 {
     let lines = read_lines_of_file("2.txt");
 
-    let lines: Vec<Vec<i32>> = lines
+    let lines: Vec<Vec<i64>> = lines
         .iter()
         .map(|line| {
-            let l: Vec<i32> = line
+            let l: Vec<i64> = line
                 .split_whitespace()
-                .map(|n| n.parse::<i32>())
+                .map(|n| n.parse::<i64>())
                 .filter(|n| n.is_ok())
                 .map(|n| n.unwrap())
                 .collect();
@@ -47,18 +47,18 @@ pub fn first() -> i32 {
 
     let res = lines.iter().filter(|l| asd(l.to_vec())).count();
 
-    res as i32
+    res as i64
 }
 
-pub fn second() -> i32 {
+pub fn second() -> i64 {
     let lines = read_lines_of_file("2.txt");
 
-    let lines: Vec<Vec<i32>> = lines
+    let lines: Vec<Vec<i64>> = lines
         .iter()
         .map(|line| {
-            let l: Vec<i32> = line
+            let l: Vec<i64> = line
                 .split_whitespace()
-                .map(|n| n.parse::<i32>())
+                .map(|n| n.parse::<i64>())
                 .filter(|n| n.is_ok())
                 .map(|n| n.unwrap())
                 .collect();
@@ -81,5 +81,5 @@ pub fn second() -> i32 {
         })
         .count();
 
-    res as i32
+    res as i64
 }
