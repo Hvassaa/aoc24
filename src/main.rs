@@ -5,6 +5,8 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day8;
+mod day9;
 
 use std::fs;
 
@@ -15,8 +17,6 @@ fn read_lines_of_file(path: &str) -> Vec<String> {
 }
 
 fn main() {
-    // let res = day7::first();
-    // println!("{res}");
-    let res = day7::second();
+    let res = day9::second();
     println!("{res}");
 }
