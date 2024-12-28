@@ -8,6 +8,7 @@ mod day7;
 mod day8;
 mod day9;
 mod day10;
+mod day11;
 
 use std::fs;
 
@@ -18,6 +19,11 @@ fn read_lines_of_file(path: &str) -> Vec<String> {
 }
 
 fn main() {
-    let res = day10::second();
+    let res = day11::second();
     println!("{res}");
+
+    // let a: f64 = 1234.;
+    // let b= a.log10().floor() as usize;
+    // let c = a / (10. as f64).powi((b - 1) as i32);
+    // println!("{c}");
 }
